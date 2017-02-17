@@ -28,5 +28,8 @@ postconf -e smtp_tls_CAfile=/etc/ssl/certs/ca-certificates.crt
 postconf -e "virtual_alias_domains=${DOMAINS}"
 postconf -e virtual_alias_maps=hash:/etc/postfix/virtual
 
+# stop complaining about missing /etc/postfix/aliases.db file
+postalias /etc/postfix/aliases
+
 postmap /etc/postfix/virtual
 /usr/sbin/postfix -c /etc/postfix start
